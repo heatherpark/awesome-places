@@ -13,14 +13,15 @@ export default class App extends React.Component<{}, IState> {
   handlePlaceNameChanged = (value: string) => {
     this.setState({ placeName: value });
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
-        <TextInput 
-        style={{width: 300, borderColor: "black", borderWidth: 1}}
-        onChangeText={this.handlePlaceNameChanged}
-        value={this.state.placeName} />
+        <TextInput
+          style={{ width: 300 }}
+          placeholder="An awesome place"
+          onChangeText={this.handlePlaceNameChanged}
+          value={this.state.placeName} />
       </View>
     );
   }
@@ -29,8 +30,9 @@ export default class App extends React.Component<{}, IState> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 26,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });
