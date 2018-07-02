@@ -1,13 +1,26 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { TextInput, StyleSheet, View } from 'react-native';
 
-export default class App extends React.Component<{}> {
+interface IState {
+  placeName: string;
+}
+
+export default class App extends React.Component<{}, IState> {
+  state = {
+    placeName: ''
+  }
+
+  handlePlaceNameChanged = (value: string) => {
+    this.setState({ placeName: value });
+  }
+  
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.ts to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <TextInput 
+        style={{width: 300, borderColor: "black", borderWidth: 1}}
+        onChangeText={this.handlePlaceNameChanged}
+        value={this.state.placeName} />
       </View>
     );
   }
