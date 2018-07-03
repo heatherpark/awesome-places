@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
+import List from './src/components/List/List';
 import ListItem from './src/components/ListItem/ListItem';
 
 interface IState {
@@ -47,10 +48,7 @@ export default class App extends React.Component<{}, IState> {
             onPress={this.handlePlaceSubmit} />
         </View>
         <View style={styles.listContainer}>
-          {this.state.places.map((place, id) =>
-            <ListItem
-              key={id}
-              placeName={place} />)}
+          <List placeList={this.state.places} />
         </View>
       </View>
     );
