@@ -7,7 +7,7 @@ interface IProps<T> {
   placeList: T[];
 }
 
-const List: React.SFC<IProps<string>> = (props: IProps<string>) => (
+const list: React.SFC<IProps<string>> = (props: IProps<string>) => (
   <View>
     {props.placeList.map((list: string, index: number) => 
     <ListItem 
@@ -16,4 +16,4 @@ const List: React.SFC<IProps<string>> = (props: IProps<string>) => (
   </View>
 );
 
-export default List;
+export default list;
