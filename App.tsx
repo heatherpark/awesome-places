@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
+import ListItem from './src/components/ListItem/ListItem';
+
 interface IState {
   placeName: string;
   places: string[];
@@ -45,8 +47,10 @@ export default class App extends React.Component<{}, IState> {
             onPress={this.handlePlaceSubmit} />
         </View>
         <View>
-          {this.state.places.map((place, id) => 
-            <Text key={id}>{place}</Text>)}
+          {this.state.places.map((place, id) =>
+            <ListItem
+              key={id}
+              placeName={place} />)}
         </View>
       </View>
     );
