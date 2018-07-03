@@ -1,51 +1,33 @@
 import * as React from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import List from './src/components/List/List';
-import ListItem from './src/components/ListItem/ListItem';
+import PlaceInput from './src/components/PlaceInput/PlaceInput';
 
-interface IState {
-  placeName: string;
-  places: string[];
+interface IState<T> {
+  places: T[];
 }
 
-export default class App extends React.Component<{}, IState> {
+export default class App extends React.Component<{}, IState<string>> {
   state = {
-    placeName: '',
     places: []
   }
 
-  handlePlaceSubmit = () => {
-    if (this.state.placeName.trim() === '') {
-      return;
-    }
-
-    this.setState((prevState: IState) => ({
+  handlePlaceSubmit = (place: string) => {
+    this.setState((prevState: IState<string>) => ({
       ...prevState,
       places: [
         ...prevState.places,
-        prevState.placeName
+        place
       ]
     }));
-  }
-
-  handlePlaceNameChanged = (value: string) => {
-    this.setState({ placeName: value });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.placeInput}
-            placeholder="An awesome place"
-            onChangeText={this.handlePlaceNameChanged}
-            value={this.state.placeName} />
-          <Button
-            title="Add"
-            style={styles.placeButton}
-            onPress={this.handlePlaceSubmit} />
+        <View style={styles.placeInputContainer}>
+          <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
         <View style={styles.listContainer}>
           <List placeList={this.state.places} />
@@ -63,19 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  inputContainer: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  placeInput: {
-    width: '70%'
-  },
-  placeButton: {
-    width: '30%'
-  },
   listContainer: {
+    width: '100%'
+  },
+  placeInputContainer: {
     width: '100%'
   }
 });
