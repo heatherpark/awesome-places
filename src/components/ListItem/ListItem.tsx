@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-interface IProps {
-  placeName: string;
+interface IProps<T> {
+  placeName: T;
 }
 
-const listItem: React.SFC<IProps> = (props) => (
+const listItem: React.SFC<IProps<string>> = (props: IProps<string>) => (
   <View style={styles.listItem}>
     <Text>{props.placeName}</Text>
   </View>
