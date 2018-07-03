@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import List from './src/components/List/List';
+import PlaceList from './src/components/PlaceList/PlaceList';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 
 interface IState<T> {
@@ -30,7 +30,7 @@ export default class App extends React.Component<{}, IState<string>> {
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
         <View style={styles.listContainer}>
-          <List placeList={this.state.places} />
+          <PlaceList places={this.state.places} />
         </View>
       </View>
     );
