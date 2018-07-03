@@ -2,12 +2,12 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 interface IProps<T> {
-  placeName: T;
+  place: T;
 }
 
 const listItem: React.SFC<IProps<string>> = (props: IProps<string>) => (
   <View style={styles.listItem}>
-    <Text>{props.placeName}</Text>
+    <Text>{props.place}</Text>
   </View>
 );
 
