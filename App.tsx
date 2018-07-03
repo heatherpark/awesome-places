@@ -1,17 +1,29 @@
 import * as React from 'react';
-import { Button, TextInput, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 interface IState {
   placeName: string;
+  places: string[];
 }
 
 export default class App extends React.Component<{}, IState> {
   state = {
-    placeName: ''
+    placeName: '',
+    places: []
   }
 
-  handlePlaceNameAdded = () => {
+  handlePlaceSubmit = () => {
+    if (this.state.placeName.trim() === '') {
+      return;
+    }
 
+    this.setState((prevState: IState) => ({
+      ...prevState,
+      places: [
+        ...prevState.places,
+        prevState.placeName
+      ]
+    }));
   }
 
   handlePlaceNameChanged = (value: string) => {
@@ -30,7 +42,11 @@ export default class App extends React.Component<{}, IState> {
           <Button
             title="Add"
             style={styles.placeButton}
-            onPress={this.handlePlaceNameAdded} />
+            onPress={this.handlePlaceSubmit} />
+        </View>
+        <View>
+          {this.state.places.map((place, id) => 
+            <Text key={id}>{place}</Text>)}
         </View>
       </View>
     );
