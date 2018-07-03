@@ -46,7 +46,7 @@ export default class App extends React.Component<{}, IState> {
             style={styles.placeButton}
             onPress={this.handlePlaceSubmit} />
         </View>
-        <View>
+        <View style={styles.listContainer}>
           {this.state.places.map((place, id) =>
             <ListItem
               key={id}
@@ -76,5 +76,8 @@ const styles = StyleSheet.create({
   },
   placeButton: {
     width: '30%'
+  },
+  listContainer: {
+    width: '100%'
   }
 });
