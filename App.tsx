@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, StyleSheet, View } from 'react-native';
+import { Button, TextInput, StyleSheet, View } from 'react-native';
 
 interface IState {
   placeName: string;
@@ -10,6 +10,10 @@ export default class App extends React.Component<{}, IState> {
     placeName: ''
   }
 
+  handlePlaceNameAdded = () => {
+
+  }
+
   handlePlaceNameChanged = (value: string) => {
     this.setState({ placeName: value });
   }
@@ -17,11 +21,17 @@ export default class App extends React.Component<{}, IState> {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{ width: 300 }}
-          placeholder="An awesome place"
-          onChangeText={this.handlePlaceNameChanged}
-          value={this.state.placeName} />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.placeInput}
+            placeholder="An awesome place"
+            onChangeText={this.handlePlaceNameChanged}
+            value={this.state.placeName} />
+          <Button
+            title="Add"
+            style={styles.placeButton}
+            onPress={this.handlePlaceNameAdded} />
+        </View>
       </View>
     );
   }
@@ -35,4 +45,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
+  inputContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  placeInput: {
+    width: '70%'
+  },
+  placeButton: {
+    width: '30%'
+  }
 });
