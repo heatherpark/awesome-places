@@ -4,12 +4,12 @@ import { FlatList } from 'react-native';
 import ListItem from '../ListItem/ListItem';
 import { Place } from '../../constants';
 
-interface PlaceListProps<T> {
+interface PlaceListProps {
   onItemDeleted: (index: number) => void;
-  places: T[];
+  places: Place[];
 }
 
-const placeList: React.SFC<PlaceListProps<Place>> = (props: PlaceListProps<Place>) => (
+const placeList: React.SFC<PlaceListProps> = (props: PlaceListProps) => (
   <FlatList
     data={props.places}
     renderItem={(info) => (
