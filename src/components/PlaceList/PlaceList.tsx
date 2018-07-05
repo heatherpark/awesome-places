@@ -5,7 +5,7 @@ import ListItem from '../ListItem/ListItem';
 import { Place } from '../../constants';
 
 interface PlaceListProps {
-  onItemDeleted: (index: number) => void;
+  onItemSelected: (index: number) => void;
   places: Place[];
 }
 
@@ -16,7 +16,7 @@ const placeList: React.SFC<PlaceListProps> = (props: PlaceListProps) => (
       <ListItem
         placeName={info.item.name}
         placeImage={info.item.image}
-        onItemPressed={() => props.onItemDeleted(info.item.key)} />
+        onItemPressed={() => props.onItemSelected(info.item.key)} />
     )}
   />
 );
