@@ -5,22 +5,23 @@ import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
 import { Place } from './src/constants';
 
-interface AppState<T> {
-  places: T[];
+interface AppState {
+  places: Place[];
 }
 
-export default class App extends React.Component<{}, AppState<Place>> {
+export default class App extends React.Component<{}, AppState> {
   state = {
     places: []
   }
 
   handlePlaceSubmit = (placeName: string) => {
     const newPlace = {
+      // TODO: Use id generator
       key: Math.random(),
       value: placeName
     };
 
-    this.setState((prevState: AppState<Place>) => ({
+    this.setState((prevState: AppState) => ({
       ...prevState,
       places: prevState.places.concat(newPlace)
     }));
@@ -28,7 +29,7 @@ export default class App extends React.Component<{}, AppState<Place>> {
 
   handleItemDeleted = (key: number) => {
     this.setState(prevState => ({
-      places: prevState.places.filter((place) => 
+      places: prevState.places.filter((place) =>
         place.key !== key)
     }));
   }
@@ -40,7 +41,7 @@ export default class App extends React.Component<{}, AppState<Place>> {
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
         <View style={styles.listContainer}>
-          <PlaceList 
+          <PlaceList
             onItemDeleted={this.handleItemDeleted}
             places={this.state.places} />
         </View>
