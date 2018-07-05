@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import PlaceList from './src/components/PlaceList/PlaceList';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
+import PlaceList from './src/components/PlaceList/PlaceList';
+import { Place } from './src/constants';
 
 interface AppState<T> {
   places: T[];
-}
-
-export type Place = {
-  key: number;
-  value: string;
 }
 
 export default class App extends React.Component<{}, AppState<Place>> {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { FlatList } from 'react-native';
 
 import ListItem from '../ListItem/ListItem';
-import { Place } from '../../../App';
+import { Place } from '../../constants';
 
 interface PlaceListProps<T> {
   onItemDeleted: (index: number) => void;
