@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface IProps<T> {
-  placeName: T;
+interface ListItemProps {
+  placeName: string;
   onItemPressed: () => void;
 }
 
-const listItem: React.SFC<IProps<string>> = (props: IProps<string>) => (
+const listItem: React.SFC<ListItemProps> = (props: ListItemProps) => (
   <TouchableOpacity onPress={props.onItemPressed}>
     <View style={styles.listItem}>
       <Text>{props.placeName}</Text>

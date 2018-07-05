@@ -12,7 +12,7 @@ interface PlaceListProps {
 const placeList: React.SFC<PlaceListProps> = (props: PlaceListProps) => (
   <FlatList
     data={props.places}
-    renderItem={(info) => (
+    renderItem={info => (
       <ListItem
         placeName={info.item.value}
         onItemPressed={() => props.onItemDeleted(info.item.key)} />
