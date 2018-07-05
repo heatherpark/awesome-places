@@ -1,4 +1,5 @@
 export type Place = {
   key: number;
-  value: string;
+  name: string;
+  image: {};
 }
