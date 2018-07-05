@@ -47,7 +47,7 @@ export default class App extends React.Component<{}, AppState> {
   render() {
     return (
       <View style={styles.container}>
-        <PlaceDetail selec />
+        <PlaceDetail selectedPlace={this.state.selectedPlace} />
         <View style={styles.placeInputContainer}>
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
