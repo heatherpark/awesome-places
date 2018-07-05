@@ -23,6 +23,13 @@ export default class App extends React.Component<{}, IState<string>> {
     }));
   }
 
+  handleItemDeleted = (index: number) => {
+    this.setState(prevState => ({
+      places: prevState.places.filter((place, i) => 
+        i !== index)
+    }));
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -30,7 +37,9 @@ export default class App extends React.Component<{}, IState<string>> {
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
         <View style={styles.listContainer}>
-          <PlaceList places={this.state.places} />
+          <PlaceList 
+            onItemDeleted={this.handleItemDeleted}
+            places={this.state.places} />
         </View>
       </View>
     );
