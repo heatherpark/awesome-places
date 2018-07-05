@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
-interface IProps {
+interface PlaceInputProps {
   onPlaceSubmit: (placeName: string) => void;
 }
 
-class PlaceInput extends React.Component<IProps> {
+class PlaceInput extends React.Component<PlaceInputProps> {
   state = {
     placeName: ''
   }
   
-  handlePlaceNameChanged = (placeName: string) => {
-    this.setState({ placeName: placeName });
+  handleInputChange = (placeName: string) => {
+    this.setState({ placeName });
   }
 
   handleSubmit = (placeName: string) => {
@@ -25,7 +25,7 @@ class PlaceInput extends React.Component<IProps> {
         <TextInput
           style={styles.placeInput}
           placeholder="An awesome place"
-          onChangeText={this.handlePlaceNameChanged}
+          onChangeText={this.handleInputChange}
           value={this.state.placeName} />
         <Button
           title="Add"
