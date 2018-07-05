@@ -16,7 +16,9 @@ const placeDetail: React.SFC<PlaceDetailProps> = props => {
   );
 
   return (
-    <Modal visible={props.selectedPlace !== null}>
+    <Modal 
+      animationType="slide"
+      visible={props.selectedPlace !== null}>
       <View style={styles.modalContainer}>
         {props.selectedPlace && renderModal(props.selectedPlace)}
         <View>
