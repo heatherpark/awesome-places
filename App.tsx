@@ -9,7 +9,7 @@ import placeImage from './src/assets/tokyo-main.jpg';
 
 interface AppState {
   places: Place[];
-  selectedPlace?: Place | null;
+  selectedPlace: Place | null;
 }
 
 export default class App extends React.Component<{}, AppState> {
@@ -33,11 +33,15 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   handleItemSelected = (key: number) => {
-    this.setState(prevState => ({
-      ...prevState,
-      selectedPlace: prevState.places.find(place => 
-        place.key === key)
-    }));
+    this.setState(prevState => {
+      const place = prevState.places.find(place =>
+        place.key === key);
+
+      return {
+        ...prevState,
+        selectedPlace: place ? place : null
+      };
+    });
   }
 
   render() {
