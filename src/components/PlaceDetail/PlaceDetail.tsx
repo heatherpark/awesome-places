@@ -10,13 +10,15 @@ interface PlaceDetailProps {
 const placeDetail: React.SFC<PlaceDetailProps> = props => {
   const renderModal = (selectedPlace: Place) => (
     <React.Fragment>
-      <Image source={selectedPlace.image} />
-      <Text>{selectedPlace.name}</Text>
+      <Image
+        style={styles.placeImage}
+        source={selectedPlace.image} />
+      <Text style={styles.placeName} >{selectedPlace.name}</Text>
     </React.Fragment>
   );
 
   return (
-    <Modal 
+    <Modal
       animationType="slide"
       visible={props.selectedPlace !== null}>
       <View style={styles.modalContainer}>
@@ -33,6 +35,15 @@ const placeDetail: React.SFC<PlaceDetailProps> = props => {
 const styles = StyleSheet.create({
   modalContainer: {
     margin: 22
+  },
+  placeImage: {
+    width: '100%',
+    height: 200
+  },
+  placeName: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 28
   }
 });
 
