@@ -4,29 +4,36 @@ import { StyleSheet, View } from 'react-native';
 import PlaceList from './src/components/PlaceList/PlaceList';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 
-interface IState<T> {
+interface AppState<T> {
   places: T[];
 }
 
-export default class App extends React.Component<{}, IState<string>> {
+export type Place = {
+  key: number;
+  value: string;
+}
+
+export default class App extends React.Component<{}, AppState<Place>> {
   state = {
     places: []
   }
 
-  handlePlaceSubmit = (place: string) => {
-    this.setState((prevState: IState<string>) => ({
+  handlePlaceSubmit = (placeName: string) => {
+    const newPlace = {
+      key: Math.random(),
+      value: placeName
+    };
+
+    this.setState((prevState: AppState<Place>) => ({
       ...prevState,
-      places: [
-        ...prevState.places,
-        place
-      ]
+      places: prevState.places.concat(newPlace)
     }));
   }
 
-  handleItemDeleted = (index: number) => {
+  handleItemDeleted = (key: number) => {
     this.setState(prevState => ({
-      places: prevState.places.filter((place, i) => 
-        i !== index)
+      places: prevState.places.filter((place) => 
+        place.key !== key)
     }));
   }
 

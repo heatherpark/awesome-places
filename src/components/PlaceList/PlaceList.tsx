@@ -1,21 +1,23 @@
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { FlatList } from 'react-native';
 
 import ListItem from '../ListItem/ListItem';
+import { Place } from '../../../App';
 
-interface IProps<T> {
+interface PlaceListProps<T> {
   onItemDeleted: (index: number) => void;
   places: T[];
 }
 
-const placeList: React.SFC<IProps<string>> = (props: IProps<string>) => (
-  <View>
-    {props.places.map((list: string, index: number) =>
+const placeList: React.SFC<PlaceListProps<Place>> = (props: PlaceListProps<Place>) => (
+  <FlatList
+    data={props.places}
+    renderItem={(info) => (
       <ListItem
-        onItemPressed={() => props.onItemDeleted(index)}
-        key={index}
-        place={list} />)}
-  </View>
+        placeName={info.item.value}
+        onItemPressed={() => props.onItemDeleted(info.item.key)} />
+    )}
+  />
 );
 
 export default placeList;
