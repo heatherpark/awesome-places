@@ -1,14 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface IProps<T> {
   place: T;
+  onItemPressed: () => void;
 }
 
 const listItem: React.SFC<IProps<string>> = (props: IProps<string>) => (
-  <View style={styles.listItem}>
-    <Text>{props.place}</Text>
-  </View>
+  <TouchableOpacity onPress={props.onItemPressed}>
+    <View style={styles.listItem}>
+      <Text>{props.place}</Text>
+    </View>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
