@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
 import { Place } from './src/constants';
@@ -8,11 +9,13 @@ import placeImage from './src/assets/tokyo-main.jpg';
 
 interface AppState {
   places: Place[];
+  selectedPlace?: Place | null;
 }
 
 export default class App extends React.Component<{}, AppState> {
   state = {
-    places: []
+    places: [],
+    selectedPlace: null
   }
 
   handlePlaceSubmit = (placeName: string) => {
@@ -29,22 +32,24 @@ export default class App extends React.Component<{}, AppState> {
     }));
   }
 
-  handleItemDeleted = (key: number) => {
+  handleItemSelected = (key: number) => {
     this.setState(prevState => ({
-      places: prevState.places.filter((place) =>
-        place.key !== key)
+      ...prevState,
+      selectedPlace: prevState.places.find(place => 
+        place.key === key)
     }));
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <PlaceDetail selec />
         <View style={styles.placeInputContainer}>
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
         <View style={styles.listContainer}>
           <PlaceList
-            onItemDeleted={this.handleItemDeleted}
+            onItemSelected={this.handleItemSelected}
             places={this.state.places} />
         </View>
       </View>
