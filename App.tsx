@@ -21,7 +21,7 @@ export default class App extends React.Component<{}, AppState> {
   handlePlaceSubmit = (placeName: string) => {
     const newPlace = {
       // TODO: Use id generator
-      key: Math.random(),
+      key: `${Math.random()}`,
       name: placeName,
       image: placeImage
     };
@@ -32,22 +32,41 @@ export default class App extends React.Component<{}, AppState> {
     }));
   }
 
-  handleItemSelected = (key: number) => {
+  handleItemSelected = (key: string) => {
     this.setState(prevState => {
       const place = prevState.places.find(place =>
         place.key === key);
 
       return {
-        ...prevState,
         selectedPlace: place ? place : null
       };
     });
   }
 
+  handleModalClosed = () => {
+    this.setState({
+      selectedPlace: null
+    });
+  }
+
+  handlePlaceDeleted = () => {
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        places: prevState.places.filter(place => 
+          place.key !== prevState.selectedPlace!.key
+        )
+      };
+    }, () => this.handleModalClosed());
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <PlaceDetail selectedPlace={this.state.selectedPlace} />
+        <PlaceDetail 
+          onItemDeleted={this.handlePlaceDeleted}
+          onModalClosed={this.handleModalClosed}
+          selectedPlace={this.state.selectedPlace} />
         <View style={styles.placeInputContainer}>
           <PlaceInput onPlaceSubmit={this.handlePlaceSubmit.bind(this)} />
         </View>
