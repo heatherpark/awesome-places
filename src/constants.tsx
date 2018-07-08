@@ -1,5 +1,5 @@
 export type Place = {
-  key: number;
+  key: string;
   name: string;
   image: {};
 }
