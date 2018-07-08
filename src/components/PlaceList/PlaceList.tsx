@@ -5,7 +5,7 @@ import ListItem from '../ListItem/ListItem';
 import { Place } from '../../constants';
 
 interface PlaceListProps {
-  onItemSelected: (index: number) => void;
+  onItemSelected: (key: string) => void;
   places: Place[];
 }
 
