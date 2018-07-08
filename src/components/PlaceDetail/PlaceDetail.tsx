@@ -5,6 +5,8 @@ import { Place } from '../../constants';
 
 interface PlaceDetailProps {
   selectedPlace: Place | null;
+  onItemDeleted: () => void;
+  onModalClosed: () => void;
 }
 
 const placeDetail: React.SFC<PlaceDetailProps> = props => {
@@ -24,8 +26,13 @@ const placeDetail: React.SFC<PlaceDetailProps> = props => {
       <View style={styles.modalContainer}>
         {props.selectedPlace && renderModal(props.selectedPlace)}
         <View>
-          <Button onPress={() => { }} title="Delete" color="red" />
-          <Button onPress={() => { }} title="Close" />
+          <Button 
+            onPress={() => props.onItemDeleted()} 
+            title="Delete" 
+            color="red" />
+          <Button 
+            onPress={() => props.onModalClosed()} 
+            title="Close" />
         </View>
       </View>
     </Modal>
