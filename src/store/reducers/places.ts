@@ -6,7 +6,10 @@ const initialState: PlacesState = {
 };
 
 const reducer = (state: PlacesState = initialState, action) => {
-
+  switch (action.type) {
+    default:
+      return state;
+  }
 };
 
 export default reducer;
