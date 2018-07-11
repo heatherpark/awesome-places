@@ -4,15 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
-import { Place } from './src/constants';
+import { PlacesState } from './src/constants';
 import placeImage from './src/assets/tokyo-main.jpg';
 
-interface AppState {
-  places: Place[];
-  selectedPlace: Place | null;
-}
-
-export default class App extends React.Component<{}, AppState> {
+export default class App extends React.Component<{}, PlacesState> {
   state = {
     places: [],
     selectedPlace: null
@@ -26,7 +21,7 @@ export default class App extends React.Component<{}, AppState> {
       image: placeImage
     };
 
-    this.setState((prevState: AppState) => ({
+    this.setState((prevState: PlacesState) => ({
       ...prevState,
       places: prevState.places.concat(newPlace)
     }));
